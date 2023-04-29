@@ -241,6 +241,14 @@ function Home({ messages }) {
                     vertical: 'top',
                     horizontal: 'left',
                   }}
+                  PaperProps={{
+                    style: {
+                      marginTop: "3.5rem",
+                      borderRadius: "18px",
+                      backgroundColor: "#eef2fb",
+                      boxShadow: "0px 4px 0px rgba(0, 0, 0, 0.1)"
+                    }
+                  }}
                   onClose={handleClose}
                   open={Boolean(anchorProfileMenu)}
                 >

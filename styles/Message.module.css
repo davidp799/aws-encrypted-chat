@@ -19,6 +19,10 @@
   animation: expand-bounce 0.25s ease-out 0s forwards;
   animation-delay: var(--delay);
 }
+.sentMessage:hover {
+  box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1);
+  transition: all 200ms ease 0s;
+}
 
 .receivedMessageContainer {
   display: flex;
@@ -39,6 +43,11 @@
   /* animations */
   animation: expand-bounce 0.25s ease-out 0s forwards;
   animation-delay: var(--delay);
+}
+.receivedMessage:hover {
+  transform: translateY(-1px);
+  box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1);
+  transition: all 200ms ease 0s;
 }
 
 .senderText {
