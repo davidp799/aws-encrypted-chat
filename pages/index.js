@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 // Material UI Elements
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ListItemText from '@mui/material/ListItemText';
+import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import Person2RoundedIcon from '@mui/icons-material/Person2Rounded';
+import CircleRoundedIcon from '@mui/icons-material/CircleRounded';
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 // AWS Elements
@@ -11,12 +20,23 @@ import { createMessage } from "../graphql/mutations";
 import Message from "../components/message";
 import { onCreateMessage } from "../graphql/subscriptions";
 
+function generate(element) {
+  return [0, 1, 2].map(function (value) {
+      return React.cloneElement(element, {
+          key: value,
+      });
+  });
+}
+
 function Home({ messages }) {
   const [stateMessages, setStateMessages] = useState([...messages]);
   const [messageText, setMessageText] = useState("");
   const [user, setUser] = useState(null);
   // profile menu variables
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorProfileMenu, setAnchorProfileMenu] = React.useState(null);
+  // user list variables
+  const [anchorUserList, setAnchorUserList] = React.useState(null);
+  const [secondary, setSecondary] = React.useState(false);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -90,8 +110,12 @@ function Home({ messages }) {
 
   // Profile Menu Functions
   const handleClose = () => {
-    setAnchorEl(null);
+    setAnchorProfileMenu(null);
   };
+  // temp, need to integrate with handleClose
+  const handleCloseUserList = () => {
+    setAnchorUserList(null);
+  }
   const handleDeleteAccount = () => {
     // blank slate
     if (user !== null) {
@@ -110,7 +134,10 @@ function Home({ messages }) {
     });
   };
   const showProfileMenu = (event) => {
-    setAnchorEl(event.currentTarget);
+    setAnchorProfileMenu(event.currentTarget);
+  };
+  const showUserList = (event) => {
+    setAnchorUserList(event.currentTarget);
   };
 
   if (user) {
@@ -118,6 +145,78 @@ function Home({ messages }) {
       <div className={styles.background}>
         <div className={styles.container}>
           <div className={styles.header}>
+            <label htmlFor="icon-button-user-profile">
+              {/* user list - click to view all */}
+              <div className={styles.buttonContainer}>
+                <button
+                  className={styles.buttonUserList}
+                  onClick={showUserList}
+                  aria-label="user list" 
+                  aria-controls="simple-list"
+                  aria-haspopup="true"
+                >
+                  5
+                </button>
+                <Menu
+                  keepMounted
+                  anchorEl={anchorUserList}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  PaperProps={{
+                    style: {
+                      marginTop: "3rem",
+                      backgroundColor: "transparent",
+                      boxShadow: "none"
+                    }
+                  }}
+                  onClose={handleCloseUserList}
+                  open={Boolean(anchorUserList)}
+                >
+                  <List 
+                    className={styles.list}
+                    dense={true}
+                    keepMounted
+                    anchorEl={anchorUserList}
+                    anchorOrigin={{
+                      vertical: 'bottom',
+                      horizontal: 'left',
+                    }}
+                    transformOrigin={{
+                      vertical: 'bottom',
+                      horizontal: 'left',
+                    }}
+                    onClose={handleCloseUserList}
+                    open={Boolean(anchorUserList)}
+                    >
+                    {generate(
+                      <ListItem
+                        secondaryAction={
+                          <IconButton edge="end" aria-label="delete">
+                            <CircleRoundedIcon />
+                          </IconButton>
+                        }
+                      >
+                        <ListItemAvatar>
+                          <Avatar>
+                            <Person2RoundedIcon />
+                          </Avatar>
+                        </ListItemAvatar>
+                        <ListItemText
+                          primary="Chat User"
+                          secondary={secondary ? 'Secondary text' : null}
+                        />
+                      </ListItem>,
+                    )}
+                  </List>
+                </Menu>
+              </div>
+            </label>
             <h1 className={styles.title}>Welcome!</h1>
             <label htmlFor="icon-button-user-profile">
               {/* Profile Menu */}
@@ -125,7 +224,6 @@ function Home({ messages }) {
                 <button
                   className={styles.buttonUserProfile}
                   onClick={showProfileMenu}
-                  color="primary" 
                   aria-label="user profile" 
                   aria-controls="simple-menu"
                   aria-haspopup="true"
@@ -134,7 +232,7 @@ function Home({ messages }) {
                 </button>
                 <Menu
                   keepMounted
-                  anchorEl={anchorEl}
+                  anchorEl={anchorProfileMenu}
                   anchorOrigin={{
                     vertical: 'bottom',
                     horizontal: 'left',
@@ -144,7 +242,7 @@ function Home({ messages }) {
                     horizontal: 'left',
                   }}
                   onClose={handleClose}
-                  open={Boolean(anchorEl)}
+                  open={Boolean(anchorProfileMenu)}
                 >
                   <MenuItem onClick={handleDeleteAccount}>Delete Account</MenuItem>
                   <MenuItem onClick={handleLogOut}>Logout</MenuItem>
