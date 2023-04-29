@@ -39,6 +39,10 @@ function Home({ messages }) {
   const [secondary, setSecondary] = React.useState(false);
 
   useEffect(() => {
+    document.title = 'ChatNow Beta - Online Chatroom';
+  }, []);
+
+  useEffect(() => {
     const fetchUser = async () => {
       try {
         const amplifyUser = await Auth.currentAuthenticatedUser();
