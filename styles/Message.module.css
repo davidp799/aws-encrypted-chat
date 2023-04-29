@@ -23,6 +23,9 @@
   box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1);
   transition: all 200ms ease 0s;
 }
+.sentMessage:active {
+  background: linear-gradient(90deg, #1a6dd3 0%, #164bb6 120%);
+}
 
 .receivedMessageContainer {
   display: flex;
@@ -48,6 +51,9 @@
   transform: translateY(-1px);
   box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1);
   transition: all 200ms ease 0s;
+}
+.receivedMessage:active {
+  background: #d6dae2;
 }
 
 .senderText {
