@@ -54,6 +54,11 @@
   text-align: center;
   background-image: none;
 }
+@media screen and (max-width: 850px) {
+  .chatbox {
+    height: 70vh;
+  }
+}
 
 .formContainer {
   width: 100%;
