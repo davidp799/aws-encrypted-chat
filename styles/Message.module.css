@@ -1,4 +1,5 @@
 .sentMessageContainer {
+  z-index: 1;
   display: flex;
   flex-direction: column;
   float: right;
@@ -8,6 +9,7 @@
 }
 
 .sentMessage {
+  z-index: 1;
   text-align: left;
   padding: 8px;
   font-family: "roboto", sans-serif;
@@ -28,6 +30,7 @@
 }
 
 .receivedMessageContainer {
+  z-index: 1;
   display: flex;
   flex-direction: column;
   float: right;
@@ -37,6 +40,7 @@
 }
 
 .receivedMessage {
+  z-index: 1;
   text-align: left;
   padding: 12px 24px;
   font-family: "roboto", sans-serif;

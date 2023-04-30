@@ -23,10 +23,11 @@
 }
 
 .header {
+  z-index: 100;
   position: fixed;
   top: 0px;
   display: flex;
-  min-height: 32px;
+  min-height: 3rem;
   height: 10vh;
   width: 100%;
   flex-direction: row;
@@ -59,10 +60,11 @@
 }
 
 .formContainer {
+  z-index: 100;
   position: fixed;
   bottom: 0px;
   width: 100%;
-  min-height: 32px;
+  min-height: 3rem;
   height: 10vh;
   background-color: rgba(252, 253, 255, 0.85);
   background-image: none;
@@ -81,7 +83,7 @@
 }
 
 .textBox {
-  min-height: 48px;
+  min-height: 3rem;
   width: 100%;
   padding-left: 24px;
   padding-right: 8px;
@@ -146,7 +148,8 @@
 
 .buttonUserProfile {
   background-color: #e6e9ee;
-  height: 3rem;
+  min-height: 40px;
+  height: 6vh;
   width: auto;
   font-size: 1.2rem;
   font-weight: bold;
@@ -169,8 +172,9 @@
 
 .buttonUserList {
   background-color: #28b62c;
-  height: 2rem;
-  width: 2rem;
+  min-height: 28px;
+  height: 4vh;
+  width: 4vh;
   font-size: 0.75rem;
   font-weight: bold;
   border: none;
