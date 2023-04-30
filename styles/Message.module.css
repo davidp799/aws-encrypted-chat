@@ -1,61 +1,53 @@
-.sentMessageContainer {
+.sentMessageContainer, .receivedMessageContainer {
+  width: 60vw;
   z-index: 1;
   display: flex;
   flex-direction: column;
   float: right;
-  align-items: flex-end;
-  justify-content: flex-end;
   margin: 8px;
 }
 
-.sentMessage {
+.sentMessageContainer {
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.receivedMessageContainer {
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.sentMessage, .receivedMessage {
   z-index: 1;
   text-align: left;
-  padding: 8px;
-  font-family: "roboto", sans-serif;
-  color: #fff;
   padding: 12px 24px;
-  background: linear-gradient(90deg, rgba(29,120,234,1) 0%, rgba(24,83,202,1) 100%);
+  font-family: "roboto", sans-serif;
   border-radius: 36px;
   /* animations */
   animation: expand-bounce 0.25s ease-out 0s forwards;
   animation-delay: var(--delay);
+  max-width: 80%;
 }
-.sentMessage:hover {
+
+.sentMessage {
+  color: #fff;
+  background: linear-gradient(90deg, rgba(29,120,234,1) 0%, rgba(24,83,202,1) 100%);
+}
+
+.receivedMessage {
+  color: #000;
+  background: #eef2fb;
+}
+
+.sentMessage:hover, .receivedMessage:hover {
   box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1);
   transition: all 200ms ease 0s;
 }
+
 .sentMessage:active {
   background: linear-gradient(90deg, #1a6dd3 0%, #164bb6 120%);
 }
 
-.receivedMessageContainer {
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  float: right;
-  align-items: flex-start;
-  justify-content: flex-start;
-  margin: 8px;
-}
-
-.receivedMessage {
-  z-index: 1;
-  text-align: left;
-  padding: 12px 24px;
-  font-family: "roboto", sans-serif;
-  color: #000;
-  background: #eef2fb;
-  border-radius: 36px;
-  /* animations */
-  animation: expand-bounce 0.25s ease-out 0s forwards;
-  animation-delay: var(--delay);
-}
-.receivedMessage:hover {
-  transform: translateY(-1px);
-  box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1);
-  transition: all 200ms ease 0s;
-}
 .receivedMessage:active {
   background: #d6dae2;
 }
@@ -76,5 +68,14 @@
   }
   100% {
     transform: scale(1);
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .sentMessageContainer, .receivedMessageContainer {
+    width: auto;
+  }
+  .sentMessage, .receivedMessage {
+    max-width: 85%;
   }
 }

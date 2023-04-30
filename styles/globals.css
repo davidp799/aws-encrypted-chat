@@ -14,3 +14,32 @@ a {
   box-sizing: border-box;
   margin: 0;
 }
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #cccccc;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: auto;
+}
+
+*::-webkit-scrollbar-track {
+  background: whitesmoke;
+  border-radius: 18px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #cccccc;
+  border-radius: 18px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #b8b8b8;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: #a3a3a3;
+}
