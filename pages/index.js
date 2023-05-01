@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
+// require("dotenv");
 // Material UI Elements
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -32,15 +33,51 @@ function Home({ messages }) {
   const [stateMessages, setStateMessages] = useState([...messages]);
   const [messageText, setMessageText] = useState("");
   const [user, setUser] = useState(null);
-  // profile menu variables
+  // const [stateUsers, setStateUsers] = useState([]);
   const [anchorProfileMenu, setAnchorProfileMenu] = React.useState(null);
-  // user list variables
   const [anchorUserList, setAnchorUserList] = React.useState(null);
   const [secondary, setSecondary] = React.useState(false);
 
   useEffect(() => {
     document.title = 'ChatNow Beta - Online Chatroom';
   }, []);
+
+  // useEffect(() => {
+  //   fetch(`/api/hello`)
+  //   // ...
+  //   async function getUsers() {
+  //     try {
+  //       var aws = require('aws-sdk');
+
+  //       const client = new aws.CognitoIdentityServiceProvider({
+  //         region: "us-east-1",
+  //         credentials: {
+  //           accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  //           secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  //         }
+  //       });
+    
+  //       var params = {
+  //         UserPoolId: environment.amplify.Auth.userPoolId, /* required */
+  //         AttributesToGet: [
+  //           "username",
+  //         ],
+  //         Limit: 0
+  //       };
+  //       client.listUsers(params, function (err, data) {
+  //         if (err) console.log(err, err.stack); // an error occurred
+  //         else { // successful response
+  //           console.log(data);  
+  //           setStateUsers([...usersReq.data.listUsers.items]);
+  //         }
+  //       });     
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   }
+  //   getUsers();
+
+  // }, [user]);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -198,6 +235,17 @@ function Home({ messages }) {
                     onClose={handleCloseUserList}
                     open={Boolean(anchorUserList)}
                     >
+                    {/* {stateUsers
+                      // sort users oldest to newest client-side
+                      .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
+                      .map((users) => (
+                        // map each user into the user component with user as props
+                        <User
+                          user={user}
+                          isMe={user.username === user.owner}
+                          key={user.id}
+                        />
+                    ))} */}
                     {generate(
                       <ListItem
                         secondaryAction={
