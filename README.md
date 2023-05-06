@@ -75,7 +75,7 @@ The `lib/databaseStack.ts` file creates a single DynamoDB table that is used as 
 
 ## Useful commands
 
-- `npm run build` compile typescript to js
+- `npm run dev` compile to js and host on local server
 - `npm run watch` watch for changes and compile
 - `cdk deploy` deploy this stack to your default AWS account/region
 - `cdk diff` compare deployed stack with current state
